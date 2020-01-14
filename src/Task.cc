@@ -148,6 +148,8 @@ void MINMAX::run( Session* session, const string& argument ){
   tmp = arg3.substr( 0, delimitter );
   (*(session->image))->max[nchan] = atof( tmp.c_str() );
 
+  session->view->minmax_stretching = true;
+
   if( session->loglevel >= 2 ) *(session->logfile) << "MINMAX :: set to " << (*(session->image))->min[nchan] << ", "
 						   << (*(session->image))->max[nchan] << " for channel " << nchan << endl;
 }

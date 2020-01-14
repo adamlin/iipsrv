@@ -82,6 +82,7 @@ class View{
   float contrast;                             /// Contrast adjustment requested by CNT command
   float gamma;                                /// Gamma adjustment requested by GAM command
   bool equalization;                          /// Whether to perform histogram equalization
+  bool minmax_stretching;                     /// Whether to perform contrast stretching using min/max
 
 
   /// Constructor
@@ -104,6 +105,7 @@ class View{
     embed_icc = true;
     output_format = JPEG;
     equalization = false;
+    minmax_stretching = false;
     output_bpc = 8;
   };
 
@@ -259,7 +261,7 @@ class View{
 
   /// Whether view requires floating point processing
   bool floatProcessing(){
-    if( contrast != 1.0 || gamma != 1.0 || cmapped || shaded || inverted || ctw.size() ){
+    if( contrast != 1.0 || gamma != 1.0 || cmapped || shaded || inverted || ctw.size() || minmax_stretching){
       return true;
     }
     else return false;
